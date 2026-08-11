@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ina Gordon — Online-Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FARBEN – zum Ändern einfach die Werte unten bearbeiten.
+   (Hex-Codes: z.B. #EC9D8F = Rosen-Terrakotta)
+   ============================================================ */
+:root{
+  --paper:#FBF7F1;      /* Hintergrund (warmes Creme) */
+  --paper-2:#F5EDE3;    /* Panel-Hintergrund (CTA) */
+  --ink:#3E3A35;        /* Haupttext (fast schwarz) */
+  --ink-soft:#6B655C;   /* Nebentext */
+  --rose:#EC9D8F;       /* Akzentfarbe Rosen/terrakotta */
+  --rose-deep:#C96F5C;  /* dunkleres Rosen für Hover */
+  --gold:#D9A82A;       /* Gold (Dekor, Halbkreis) */
+  --sage:#6F8B72;       /* Salbeigrün (Labels) */
+  --line:#E4DACB;       /* dünne Trennlinien */
+  --white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Karla",Georgia,serif;font-weight:400;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.06'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+header{position:relative;z-index:20;padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.brand .ring{width:52px;height:52px;flex:none}
+.brand .nm{display:flex;flex-direction:column;line-height:1.15}
+.brand .nm b{font-family:"Fraunces",Georgia,serif;font-size:19px;letter-spacing:.2px}
+.brand .nm span{font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--ink-soft)}
+nav{display:flex;align-items:center;gap:6px}
+nav a{color:var(--ink);text-decoration:none;font-size:14px;padding:9px 13px;border-radius:99px;transition:.2s}
+nav a:hover{background:var(--paper-2);color:var(--rose-deep)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:"Karla",Georgia,serif;font-weight:600;font-size:14.5px;text-decoration:none;border:none;cursor:pointer;padding:13px 24px;border-radius:99px;transition:.22s}
+.btn-rose{background:var(--rose);color:#4a2a22}
+.btn-rose:hover{background:var(--rose-deep);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:#8a6410}
+nav .btn{padding:11px 20px;margin-left:10px}
+.hero{padding:clamp(30px,6vw,72px) 0 clamp(44px,7vw,90px);display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:2.6px;text-transform:uppercase;color:var(--rose-deep);font-weight:600;margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:1.5px;background:var(--gold)}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:380;font-size:clamp(38px,5.6vw,66px);line-height:1.04;letter-spacing:-.5px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--rose-deep);font-weight:360}
+.hero p.lead{margin-top:24px;max-width:52ch;font-size:clamp(16px,1.4vw,18.5px);color:var(--ink-soft)}
+.hero .cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero .note{font-size:13px;color:var(--ink-soft);margin-top:18px}
+.hero .note b{color:var(--sage)}
+.portrait{position:relative;justify-self:center;width:min(360px,86%)}
+.portrait .halo{position:absolute;inset:-18px -18px auto auto;width:100%;height:100%;border:1.5px solid var(--gold);border-radius:50% 50% 4px 4px;z-index:0}
+.portrait img{position:relative;z-index:1;width:100%;display:block;border-radius:50% 50% 8px 8px;box-shadow:0 30px 60px -30px rgba(62,58,53,.35)}
+.portrait .cap{position:relative;z-index:2;margin-top:18px;text-align:center;font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:15px;color:var(--ink-soft)}
+section{padding:clamp(44px,6vw,80px) 0}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(22px,3vw,36px)}
+.sec-head .num{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--gold);font-size:15px}
+.sec-head h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(27px,3.6vw,40px);letter-spacing:-.3px}
+.sec-head .rule{flex:1;height:1px;background:var(--line)}
+.divider{height:1px;background:var(--line)}
+.about{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.about .prose p{color:var(--ink-soft);font-size:16.5px;margin-bottom:16px}
+.about .prose b{color:var(--ink);font-weight:600}
+.creds{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);margin-top:6px}
+.creds .c{display:flex;gap:16px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line)}
+.creds .c i{font-style:normal;color:var(--rose-deep);font-size:13px;flex:none;width:26px;font-family:"Fraunces",serif;font-style:italic}
+.creds .c div b{font-family:"Fraunces",Georgia,serif;font-size:16px;font-weight:600;display:block}
+.creds .c div span{font-size:14px;color:var(--ink-soft)}
+.offers{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.offer{display:grid;grid-template-columns:70px 1.3fr 1fr;gap:clamp(14px,3vw,40px);align-items:baseline;padding:26px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);position:relative;transition:.25s}
+.offer::after{content:"→";position:absolute;right:6px;top:50%;transform:translateY(-50%) translateX(-10px);opacity:0;color:var(--rose-deep);font-size:20px;transition:.25s}
+.offer:hover{background:linear-gradient(90deg,transparent,rgba(236,157,143,.08));padding-left:14px}
+.offer:hover::after{opacity:1;transform:translateY(-50%) translateX(0)}
+.offer .o-num{font-family:"Fraunces",Georgia,serif;font-style:italic;color:var(--gold);font-size:16px}
+.offer .o-t{font-family:"Fraunces",Georgia,serif;font-size:clamp(19px,2vw,24px);font-weight:500;line-height:1.25}
+.offer .o-d{color:var(--ink-soft);font-size:15px}
+.methods p{font-family:"Fraunces",Georgia,serif;font-size:clamp(19px,2.6vw,28px);line-height:1.55;color:var(--ink)}
+.methods p .dot{color:var(--gold)}
+.methods p .hl{font-style:italic;color:var(--rose-deep)}
+.methods .sub{margin-top:20px;max-width:56ch;color:var(--ink-soft);font-size:15.5px}
+.focus{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.focus .f{border:1px solid var(--line);border-radius:14px;padding:22px 22px 24px;background:var(--white);transition:.25s}
+.focus .f:hover{transform:translateY(-3px);border-color:var(--rose)}
+.focus .f .k{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--sage);font-weight:700}
+.focus .f h3{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:19px;margin:10px 0 6px}
+.focus .f p{font-size:14.5px;color:var(--ink-soft)}
+.cta-panel{position:relative;overflow:hidden;border-radius:22px;padding:clamp(40px,6vw,70px);background:var(--paper-2);border:1px solid var(--line);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(26px,4vw,56px);align-items:center}
+.cta-panel::before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:1.5px solid var(--gold);opacity:.5}
+.cta-panel h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(26px,3.4vw,38px);line-height:1.12;margin-bottom:18px}
+.cta-panel h2 em{font-style:italic;color:var(--rose-deep)}
+.cta-panel p{color:var(--ink-soft);font-size:16px;max-width:46ch;margin-bottom:26px}
+.cta-actions{display:flex;flex-wrap:wrap;gap:14px}
+.cta-meta{display:flex;flex-direction:column;gap:14px;position:relative}
+.cta-meta .ring{width:88px;height:88px;margin-bottom:6px}
+.cta-line{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--ink)}
+.cta-line .lab{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--sage);font-weight:700;width:74px;flex:none}
+.cta-line a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rose);transition:.2s}
+.cta-line a:hover{color:var(--rose-deep)}
+footer{padding:34px 0 44px;border-top:1px solid var(--line);margin-top:8px}
+footer .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .foot .left{font-size:13px;color:var(--ink-soft)}
+footer .foot .left b{color:var(--ink)}
+footer .foot .left a{color:var(--ink-soft)}
+footer .foot nav a{font-size:13px;padding:8px 12px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:880px){nav{display:none}.hero{grid-template-columns:1fr}.portrait{width:min(320px,80%);order:2}.about{grid-template-columns:1fr}.offer{grid-template-columns:1fr;gap:6px;padding:20px 4px}.offer .o-num{display:none}.cta-panel{grid-template-columns:1fr}.sec-head{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<!-- ===================================================================
+     ⚙️  ALLE INHALTE BEARBEITEN SIE HIER – in diesem KONFIGURATION-BLOCK.
+     Ändern Sie einfach die Texte in den Anführungszeichen (" ... ").
+     Achtung: Schrägstrich "/" am Ende schreiben. Keine Sonderzeichen-Option.
+     Genauere Anleitung: siehe README.md im selben Ordner.
+     =================================================================== -->
+<script>
+const KONFIGURATION = {
+
+  /* ---------- Name & Titel ---------- */
+  name: "Ina Gordon",
+  untertitel: "Psychologin · Sozialtherapeutin",
+  seitenTitel: "Ina Gordon — Online-Coaching",
+
+  /* ---------- Helden-Bereich (oben) ---------- */
+  zeileOben: "Online-Coaching & Systemisch-Integrative Therapie",
+  ueberschriftTeil1: "Raum für Veränderung – ",
+  ueberschriftSchraeg: "achtsam",        // das Wort in kursiv/Rosen
+  ueberschriftTeil2: ", vertraulich und online.",
+  einleitung: "Diplom-Psychologin und Systemisch-Integrative Sozialtherapeutin. Ich begleite Einzelpersonen, Paare und Familien durch persönliche Lebenskrisen, Veränderungsprozesse und neue Entwicklungswege – mit Herz, Klarheit und fachlicher Tiefe.",
+  knopf1: "Erstgespräch vereinbaren",
+  knopf2: "Angebote entdecken",
+  hinweis: "<b>Online &amp; vor Ort</b> · flexible Termine · absolute Vertraulichkeit",
+  zitat: "„Aus Krisen herauswachsen – psychisch gesund bleiben.\"",
+  bildAlternativ: "Ina Gordon – Diplom-Psychologin und Systemisch-Integrative Sozialtherapeutin",
+
+  /* ---------- Abschnitt 01: Über mich ---------- */
+  numUeber: "01",
+  titelUeber: "Über mich",
+  absaetzeUeber: [
+    "Ich bin <b>Diplom-Psychologin</b> und <b>Systemisch-Integrative Sozialtherapeutin</b> mit langjähriger Erfahrung in der <b>psychosozialen Beratung</b>, <b>Krisenintervention</b> und Begleitung von Einzelpersonen, Paaren und Familien.",
+    "Mein Anliegen ist es, Menschen zu befähigen, aus Krisen herauszuwachsen – dabei psychisch gesund zu bleiben und die eigene Resilienz zu stärken. Gemeinsam erarbeiten wir <b>Klarheit, Inspiration und Strategie</b> für Ihre persönliche und professionelle Entwicklung.",
+    "In der Begleitung verbinde ich systemische Perspektiven mit personzentrierter Beratung, Psychodrama, körperorientierten, achtsamkeitsbasierten und kreativen Methoden."
+  ],
+  abschluesse: [   // Qualifikationen (Nummer, Titel, Beschreibung)
+    { num:"01", titel:"Diplom-Psychologin",      text:"Universität Bremen · Schwerpunkt Klinische & Pädagogische Psychologie" },
+    { num:"02", titel:"Systemisch-Integrative Sozialtherapeutin", text:"ISIT – Vollzeitausbildung, Berlin" },
+    { num:"03", titel:"Psychosoziale Praxis",     text:"Einzelfall-, Familien- & Eingliederungshilfe · Klinisch-sozialtherapeutische Erfahrung" },
+    { num:"04", titel:"Internationale Erfahrung", text:"Psychiatrischer Studienaufenthalt · Psychosoziale Arbeit mit Jugendlichen & Familien" }
+  ],
+
+  /* ---------- Abschnitt 02: Angebote ---------- */
+  numAngebote: "02",
+  titelAngebote: "Angebote",
+  angebote: [   // Titel + Beschreibung (Zeile pro Angebot)
+    { titel:"Psychologische Beratung & Krisenbewältigung", text:"Begleitung in persönlichen Lebenskrisen – neue Stabilität, Klarheit und Handlungsfähigkeit finden." },
+    { titel:"Einzel-, Paar- & Familienberatung", text:"Räume für Beziehung, Kommunikation und Verbindung – für Einzelpersonen, Paare und Familien." },
+    { titel:"Systemisch-integrative Therapie & Potenzialentfaltung", text:"Blockaden lösen, Ressourcen entfalten, das eigene Potenzial voll entwickeln." },
+    { titel:"Begleitung in Veränderungsprozessen", text:"Psychologische Unterstützung bei beruflichen und privaten Übergängen – online und vor Ort." }
+  ],
+
+  /* ---------- Abschnitt 03: Methoden ---------- */
+  numMethoden: "03",
+  titelMethoden: "Methodisches Spektrum",
+  methoden: [ "Systemische Ansätze", "personzentrierte Beratung", "Psychodrama", "körperorientierte", "achtsamkeitsbasierte", "kreative Methoden" ],  // das letzte wird kursiv hervorgehoben
+  methodenHinweis: "Jede Begleitung ist individuell. Die Methodik richtet sich nach Ihrem Anliegen, Ihrem Tempo und Ihren Ressourcen – aufbauend auf einem tragfähigen, vertrauensvollen Kontakt.",
+
+  /* ---------- Abschnitt 04: Schwerpunkte ---------- */
+  numFokus: "04",
+  titelFokus: "Schwerpunkte",
+  fokus: [   // Kategorie (klein), Titel, Beschreibung
+    { kategorie:"Beratung",  titel:"Krisen & Resilienz",   text:"Psychologische Beratung und Krisenbewältigung für mehr psychische Gesundheit." },
+    { kategorie:"Therapie",  titel:"Potenzialentfaltung",  text:"Systemisch-integrative Therapie und persönliches Wachstum." },
+    { kategorie:"Begleitung",titel:"Jugendliche & Familien", text:"Psychosoziale Begleitung von Jugendlichen, Erwachsenen und Familien." },
+    { kategorie:"Formate",   titel:"Online & vor Ort",     text:"Flexible Termine, die in Ihren Alltag passen – deutsch, spanisch & englisch." }
+  ],
+
+  /* ---------- Kontakt / CTA (unten) ---------- */
+  ctaUeberschrift1: "Beginnen wir – ",
+  ctaUeberschriftSchraeg: "Ihr Weg zu mehr Klarheit.",
+  ctaText: "Schreiben Sie mir für ein unverbindliches Erstgespräch. Wir besprechen Ihr Anliegen, Ihre Fragen und wie ich Sie bestmöglich begleiten kann – vertraulich und ohne Druck.",
+  ctaKnopfEmail: "E-Mail schreiben",
+  ctaTelefonAnzeige: "0157 86257604",
+
+  kontakt: {   // Kontaktdaten
+    email: "ina.brost@gmx.de",
+    telefon: "0157 86257604",
+    online: "Video & Telefon",
+    web: "www.inagordon.com"
+  },
+
+  fusszeile: "Ina Gordon · Diplom-Psychologin & Systemisch-Integrative Sozialtherapeutin"
+};
+</script>
+<!-- ===================== ENDE KONFIGURATION ===================== -->
+
+<div class="wrap">
+
+  <header>
+    <a class="brand" href="#top">
+      <img class="ring" src="logo.png" alt="Logo">
+      <span class="nm"><b data-k="name">Ina Gordon</b><span data-k="untertitel">Psychologin · Sozialtherapeutin</span></span>
+    </a>
+    <nav>
+      <a href="#ueber">Über mich</a>
+      <a href="#angebote">Angebote</a>
+      <a href="#methoden">Methoden</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="btn btn-rose" href="#" data-k-href="mail" data-k="knopf1">Termin anfragen</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-text">
+      <span class="eyebrow reveal" data-k="zeileOben">…</span>
+      <h1 class="reveal" style="transition-delay:.08s"><span data-k="ueberschriftTeil1">…</span><em data-k="ueberschriftSchraeg">…</em><span data-k="ueberschriftTeil2">…</span></h1>
+      <p class="lead reveal" data-k="einleitung" style="transition-delay:.16s">…</p>
+      <div class="cta reveal" style="transition-delay:.24s">
+        <a class="btn btn-rose" href="#kontakt" data-k="knopf1">…</a>
+        <a class="btn btn-ghost" href="#angebote" data-k="knopf2">…</a>
+      </div>
+      <p class="note reveal" data-k="hinweis" style="transition-delay:.3s">…</p>
+    </div>
+    <div class="portrait reveal" style="transition-delay:.2s">
+      <div class="halo"></div>
+      <img src="portrait.png" data-k-alt="bildAlternativ">
+      <div class="cap" data-k="zitat">…</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ÜBER MICH -->
+  <section id="ueber">
+    <div class="sec-head reveal"><span class="num" data-k="numUeber">01</span><h2 data-k="titelUeber">Über mich</h2><span class="rule"></span></div>
+    <div class="about">
+      <div class="prose reveal" data-k="absaetzeUeber"></div>
+      <div class="creds reveal" data-k="abschluesse"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ANGEBOTE -->
+  <section id="angebote">
+    <div class="sec-head reveal"><span class="num" data-k="numAngebote">02</span><h2 data-k="titelAngebote">Angebote</h2><span class="rule"></span></div>
+    <div class="offers" data-k="angebote"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- METHODEN -->
+  <section id="methoden">
+    <div class="sec-head reveal"><span class="num" data-k="numMethoden">03</span><h2 data-k="titelMethoden">Methodisches Spektrum</h2><span class="rule"></span></div>
+    <div class="methods reveal">
+      <p data-k="methoden"></p>
+      <p class="sub" data-k="methodenHinweis">…</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SCHWERPUNKTE -->
+  <section>
+    <div class="sec-head reveal"><span class="num" data-k="numFokus">04</span><h2 data-k="titelFokus">Schwerpunkte</h2><span class="rule"></span></div>
+    <div class="focus" data-k="fokus"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="cta-panel reveal">
+      <div>
+        <h2><span data-k="ctaUeberschrift1">…</span><em data-k="ctaUeberschriftSchraeg">…</em></h2>
+        <p data-k="ctaText">…</p>
+        <div class="cta-actions">
+          <a class="btn btn-rose" href="#" data-k-href="mail" data-k="ctaKnopfEmail">…</a>
+          <a class="btn btn-ghost" href="#" data-k-href="tel" data-k="ctaTelefonAnzeige">…</a>
+        </div>
+      </div>
+      <div class="cta-meta">
+        <img class="ring" src="logo.png" alt="Logo">
+        <div class="cta-line"><span class="lab">E-Mail</span><a href="#" data-k-href="mail" data-k="kontakt.email">…</a></div>
+        <div class="cta-line"><span class="lab">Telefon</span><a href="#" data-k-href="tel" data-k="kontakt.telefon">…</a></div>
+        <div class="cta-line"><span class="lab">Online</span><span data-k="kontakt.online">…</span></div>
+        <div class="cta-line"><span class="lab">Web</span><a href="#" data-k-href="web" data-k="kontakt.web">…</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div class="left" data-k="fusszeile">…</div>
+      <nav><a href="#ueber">Über mich</a><a href="#angebote">Angebote</a><a href="#methoden">Methoden</a><a href="#kontakt">Kontakt</a></nav>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ============================================================
+   TECHNISCH – bitte nicht ändern.
+   Rendert die Inhalte aus dem KONFIGURATION-Block oben.
+   ============================================================ */
+(function(){
+  var K=KONFIGURATION;
+  document.title = K.seitenTitel || document.title;
+
+  // einfache Werte über data-k
+  function val(el){ var k=el.getAttribute("data-k"); if(!k) return "";
+    var p=k.split("."), o=K, i=0; while(o && i<p.length){ o=o[p[i++]]; } return (o==null?"":o); }
+  document.querySelectorAll("[data-k]").forEach(function(el){
+    if(el.hasAttribute("data-k-href")){
+      var h=el.getAttribute("data-k-href"), k=el.getAttribute("data-k");
+      var v=val(el);
+      if(h==="mail") el.href="mailto:"+(K.kontakt&&K.kontakt.email||v);
+      else if(h==="tel") el.href="tel:"+((K.kontakt&&K.kontakt.telefon||v).replace(/[^+0-9]/g,""));
+      else if(h==="web") el.href="https://"+(K.kontakt&&K.kontakt.web||v);
+    }
+    el.innerHTML=val(el);
+  });
+  // Alt-Texte
+  document.querySelectorAll("[data-k-alt]").forEach(function(el){
+    el.setAttribute("alt", K[el.getAttribute("data-k-alt")]||"");
+  });
+  // Listen
+  function abschluss(c){ return '<div class="c"><i>'+c.num+'</i><div><b>'+c.titel+'</b><span>'+c.text+'</span></div></div>'; }
+  function angebot(a,i){ return '<a class="offer reveal" href="#kontakt"><span class="o-num">'+("0"+(i+1))+'</span><span class="o-t">'+a.titel+'</span><span class="o-d">'+a.text+'</span></a>'; }
+  function fokus(f){ return '<div class="f reveal"><span class="k">'+f.kategorie+'</span><h3>'+f.titel+'</h3><p>'+f.text+'</p></div>'; }
+  var eAbs=document.querySelector('[data-k="abschluesse"]');
+  if(eAbs) eAbs.innerHTML=K.abschluesse.map(abschluss).join("");
+  var eAnb=document.querySelector('[data-k="angebote"]');
+  if(eAnb) eAnb.innerHTML=K.angebote.map(angebot).join("");
+  var eFok=document.querySelector('[data-k="fokus"]');
+  if(eFok) eFok.innerHTML=K.fokus.map(fokus).join("");
+  var eMet=document.querySelector('[data-k="methoden"]');
+  if(eMet){ eMet.innerHTML=K.methoden.map(function(m,i){ return (i?'<span class="dot"> · </span>':'')+(i===K.methoden.length-1?'<span class="hl">'+m+'</span>':m); }).join(""); }
+
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
